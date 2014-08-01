@@ -25,22 +25,24 @@ end
 
   def draw_card
     players[@turn].set_hand([@deck.deck.shift])
+    puts "#{@deck.deck[-1].value}#{@deck.deck[-1].suit}"
+    puts "*-*-*-*"
   end
 
   def has_card(check_card, player_number)
     players[player_number].hand.find_index {|card| check_card == card.value}
   end
 
-  # def check_hand(check_card)
-  #   @counter = 0
+  def check_hand(check_card)
+    @counter = 0
 
-  #   players[@turn ^ 1].hand.each_with_index do |item, index|
-  #     if item.value == check_card
-  #       players[@turn].hand << card
-  #       counter += 1
-  #     end
-  #   end
-  # end
+    players[@turn ^ 1].hand.each_with_index do |item, index|
+      if item.value == check_card
+        players[turn].hand << item
+        counter += 1
+      end
+    end
+  end
 
   def counter
     @counter

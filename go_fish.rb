@@ -13,7 +13,7 @@ def main_menu
   new_game.deal
   while new_game.deck.length > 0
     new_game.players[new_game.turn].display_hand
-    puts "Ask player"
+    puts "Player #{new_game.turn + 1} Ask player"
     asked_for_card = gets.chomp
     if asked_for_card == 'exit'
       exit
@@ -24,9 +24,10 @@ def main_menu
     else
       new_game.check_hand(asked_for_card)
 
-    if new_game.counter == 0
-        puts "Draw a card"
-    else
+      if new_game.counter == 0
+          puts "Draw a card"
+          new_game.draw_card
+      else
         puts "go again"
         new_game.check_hand(asked_for_card)
     end
